@@ -16,6 +16,7 @@ export default class HuePicker extends Component {
   constructor(props) {
     super(props);
     this.hueColors = [
+      '#ffffff',
       '#ff0000',
       '#ffff00',
       '#00ff00',
@@ -23,6 +24,7 @@ export default class HuePicker extends Component {
       '#0000ff',
       '#ff00ff',
       '#ff0000',
+      '#000000',
     ];
     this.firePressEvent = this.firePressEvent.bind(this);
     this.sliderY = new Animated.Value(props.barHeight * props.hue / 360);
@@ -62,22 +64,35 @@ export default class HuePicker extends Component {
 
   getContainerStyle() {
     const { sliderSize, barWidth, containerStyle } = this.props;
-    const paddingTop = sliderSize / 2;
+    const paddingTop = sliderSize / 20;
     const paddingLeft = sliderSize - barWidth > 0 ? (sliderSize - barWidth) / 2 : 0;
     return [
       styles.container,
       containerStyle,
       {
-        paddingTop,
-        paddingBottom: paddingTop,
-        paddingLeft,
-        paddingRight: paddingLeft,
+        borderRadius: sliderSize / 2,
+        borderWidth: sliderSize / 10,
+        padding: 5,
+        paddingTop: 0,
+        //paddingTop,
+        //paddingBottom: paddingTop,
+        //paddingLeft,
+        //paddingRight: paddingLeft,
       },
     ];
   }
 
   getCurrentColor() {
     const { hue } = this.props;
+
+    if (hue === 0) {
+      return chroma.hsl(0, 1, 1).hex();
+    }
+
+    if (hue === 360) {
+      return chroma.hsl(0, 1, 0).hex();
+    }
+
     return chroma.hsl(hue, 1, 0.5).hex();
   }
 
@@ -166,6 +181,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
+    borderColor: '#fff',
   },
   slider: {
     top: 0,
@@ -201,4 +217,3 @@ HuePicker.defaultProps = {
   onDragTerminate: null,
   onPress: null,
 };
-
