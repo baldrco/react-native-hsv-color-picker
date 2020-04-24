@@ -72,8 +72,7 @@ export default class HuePicker extends Component {
       {
         borderRadius: sliderSize / 2,
         borderWidth: sliderSize / 10,
-        padding: 5,
-        paddingTop: 0,
+        paddingHorizontal: 5,
         //paddingTop,
         //paddingBottom: paddingTop,
         //paddingLeft,
