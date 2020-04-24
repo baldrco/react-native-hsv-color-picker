@@ -1,6 +1,6 @@
 {
   "name": "baldr-react-native-color-picker",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "a react native HSV(hue, saturation, value) color picker",
   "author": "Yuan Fu",
   "bugs": {
